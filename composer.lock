@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c938b71ddd8238c2d2e7905b4ce6c529",
+    "content-hash": "4e450aacb186578eeae5cac6bbcae667",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -1317,16 +1317,16 @@
         },
         {
             "name": "laravelcollective/html",
-            "version": "v5.6.7",
+            "version": "v5.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelCollective/html.git",
-                "reference": "38f2c6ff0d3dfc497175a5cff5e24b3937f6e2c9"
+                "reference": "818efc2e160aa56e8475219faed24542e80ee25d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/38f2c6ff0d3dfc497175a5cff5e24b3937f6e2c9",
-                "reference": "38f2c6ff0d3dfc497175a5cff5e24b3937f6e2c9",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/818efc2e160aa56e8475219faed24542e80ee25d",
+                "reference": "818efc2e160aa56e8475219faed24542e80ee25d",
                 "shasum": ""
             },
             "require": {
@@ -1340,7 +1340,7 @@
             "require-dev": {
                 "illuminate/database": "5.6.*",
                 "mockery/mockery": "~1.0",
-                "phpunit/phpunit": "~7.1"
+                "phpunit/phpunit": "~5.4"
             },
             "type": "library",
             "extra": {
@@ -1381,43 +1381,48 @@
             ],
             "description": "HTML and Form Builders for the Laravel Framework",
             "homepage": "https://laravelcollective.com",
-            "time": "2018-04-26T16:09:18+00:00"
+            "time": "2018-02-08T18:38:44+00:00"
         },
         {
             "name": "laravelrus/sleepingowl",
-            "version": "4.99.99",
+            "version": "dev-development",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LaravelRUS/SleepingOwlAdmin.git",
-                "reference": "fd45eb47fe48cf15ab65bdb5aaace77c66e28786"
+                "reference": "e79d80bccb3dc0c6168ba44b8817c2d036db9e20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LaravelRUS/SleepingOwlAdmin/zipball/fd45eb47fe48cf15ab65bdb5aaace77c66e28786",
-                "reference": "fd45eb47fe48cf15ab65bdb5aaace77c66e28786",
+                "url": "https://api.github.com/repos/LaravelRUS/SleepingOwlAdmin/zipball/e79d80bccb3dc0c6168ba44b8817c2d036db9e20",
+                "reference": "e79d80bccb3dc0c6168ba44b8817c2d036db9e20",
                 "shasum": ""
             },
             "require": {
-                "barryvdh/laravel-ide-helper": "^2.4",
+                "barryvdh/laravel-ide-helper": "^2.4.3",
                 "davejamesmiller/laravel-breadcrumbs": "^3.0",
                 "doctrine/dbal": "~2.3",
                 "erusev/parsedown": "1.*",
                 "kodicms/laravel-assets": "0.*",
                 "kodicomponents/navigation": "0.*",
                 "kodicomponents/support": "0.*",
-                "laravel/framework": "~5.2",
-                "laravelcollective/html": "5.*",
+                "laravel/framework": "~5.5",
+                "laravelcollective/html": "5.5.*",
                 "php": ">=5.6.4"
             },
             "require-dev": {
                 "mockery/mockery": "0.9.*",
                 "orchestra/testbench": "~3.0",
-                "phpunit/phpunit": "~5.0"
+                "phpunit/phpunit": "~7.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
                     "dev-development": "4.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "SleepingOwl\\Admin\\Providers\\SleepingOwlServiceProvider"
+                    ]
                 }
             },
             "autoload": {
@@ -1438,10 +1443,14 @@
                 {
                     "name": "Pavel Buchnev",
                     "email": "butschster@gmail.com"
+                },
+                {
+                    "name": "Dave Gabrielyan",
+                    "email": "aioslike@gmail.com"
                 }
             ],
             "description": "Administrative interface builder for Laravel.",
-            "homepage": "http://sleeping-owl.github.io",
+            "homepage": "http://sleepingowl.ru",
             "keywords": [
                 "admin",
                 "administrator",
@@ -1449,7 +1458,7 @@
                 "laravel",
                 "panel"
             ],
-            "time": "2017-08-10T15:37:33+00:00"
+            "time": "2018-04-03T11:36:24+00:00"
         },
         {
             "name": "league/flysystem",

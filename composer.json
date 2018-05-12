@@ -9,7 +9,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
-        "laravelrus/sleepingowl": "4.*@dev"
+        "laravelrus/sleepingowl": "dev-development"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

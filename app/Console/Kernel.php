@@ -13,11 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        \SleepingOwl\Admin\Commands\InstallCommand::class,
-        \SleepingOwl\Admin\Commands\UserManagerCommand::class,
-        \SleepingOwl\Admin\Commands\SectionGenerate::class,
-        \SleepingOwl\Admin\Commands\SectionMake::class,
-        \SleepingOwl\Admin\Commands\SectionProvider::class,
+        //
     ];
 
     /**
