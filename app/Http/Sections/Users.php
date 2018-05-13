@@ -16,13 +16,15 @@ class Users extends Section implements Initializable
 {
     protected $checkAccess = false;
 
-    protected $title;
+    protected $title = 'Пользователи';
 
     protected $alias;
 
+    protected $icon = 'fa fa-user';
+
     public function initialize()
     {
-        $this->addToNavigation($priority = 3, function() {
+        $this->addToNavigation($priority = 4, function() {
             return \App\User::count();
         });
     }

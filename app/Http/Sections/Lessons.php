@@ -20,9 +20,11 @@ class Lessons extends Section implements Initializable
 
     protected $alias;
 
+    protected $icon = 'fa fa-book';
+
     public function initialize()
     {
-        $this->addToNavigation($priority = 1, function() {
+        $this->addToNavigation($priority = 2, function() {
             return \App\Lesson::count();
         });
     }
@@ -43,7 +45,7 @@ class Lessons extends Section implements Initializable
     {
         $edit = AdminForm::panel()->addBody([
             AdminFormElement::text('name', 'Заголовок')->required(),
-            AdminFormElement::select('level_id', 'Уровень', \App\Level::pluck('id', 'name')->all())->required(),
+            AdminFormElement::select('level_id', 'Уровень', \App\Level::pluck('name', 'id')->all())->required(),
             AdminFormElement::select('is_available', 'Активен/Неактивен', [1 => 'Активен', 0 => 'Неактивен'])->required()
         ]);
         return $edit;

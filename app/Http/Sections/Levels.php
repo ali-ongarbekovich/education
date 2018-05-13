@@ -20,9 +20,11 @@ class Levels extends Section implements Initializable
 
     protected $alias;
 
+    protected $icon = 'fa fa-graduation-cap';
+
     public function initialize()
     {
-        $this->addToNavigation($priority = 2, function() {
+        $this->addToNavigation($priority = 3, function() {
             return \App\Level::count();
         });
     }

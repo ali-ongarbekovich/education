@@ -20,9 +20,11 @@ class Days extends Section implements Initializable
 
     protected $alias;
 
+    protected $icon = 'fa fa-clock-o';
+
     public function initialize()
     {
-        $this->addToNavigation($priority = 0, function() {
+        $this->addToNavigation($priority = 1, function() {
             return \App\Day::count();
         });
     }
@@ -44,7 +46,7 @@ class Days extends Section implements Initializable
     {
         $edit = AdminForm::panel()->addBody([
             AdminFormElement::text('name', 'Заголовок')->required(),
-            AdminFormElement::select('lesson_id', 'Урок', \App\Lesson::pluck('id', 'name')->all())->required(),
+            AdminFormElement::select('lesson_id', 'Урок', \App\Lesson::pluck('name', 'id')->all())->required(),
             AdminFormElement::wysiwyg('description', 'Описание')->required(),
             AdminFormElement::text('task', 'Задача')->required(),
             AdminFormElement::text('answer', 'Ответ')->required(),
