@@ -21,6 +21,7 @@ class AdminSectionsServiceProvider extends ServiceProvider
         \App\Day::class => 'App\Http\Sections\Days',
         \App\Lesson::class => 'App\Http\Sections\Lessons',
         \App\Level::class => 'App\Http\Sections\Levels',
+        \App\Notification::class => 'App\Http\Sections\Notifications',
     ];
 
      public function boot(\SleepingOwl\Admin\Admin $admin)

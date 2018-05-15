@@ -9,7 +9,7 @@ class DashboardMap extends Widget
 {
     public function toHtml()
     {
-        return view('admin.main');
+        return view('admin.main')->render();
     }
     public function template()
     {

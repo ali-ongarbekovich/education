@@ -1,46 +1,31 @@
+@php
+    $notifications = App\Http\Controllers\NotificationController::getNotifications();
+@endphp
+
 <li class="dropdown notifications-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-bell-o"></i>
-        <span class="label label-warning">10</span>
+        <span class="label label-warning">{{ count($notifications) }}</span>
     </a>
     <ul class="dropdown-menu">
-        <li class="header">You have 10 notifications</li>
+        <li class="header">У вас {{ count($notifications) }} уведомлении</li>
         <li>
             <!-- inner menu: contains the actual data -->
             <ul class="menu">
-                <li>
-                    <a href="#">
-                        <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                        page and may cause design problems
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                </li>
+                @foreach($notifications as $notification)
+                    <li>
+                        <a href="/admin/notifications/{{ $notification->id }}/edit">
+                            {{ $notification->title }}
+                        </a>
+                    </li>
+                @endforeach
             </ul>
         </li>
-        <li class="footer"><a href="#">View all</a></li>
+        <li class="footer"><a href="/admin/notifications">Все</a></li>
     </ul>
 </li>
 
-<li class="dropdown tasks-menu">
+<!-- <li class="dropdown tasks-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <i class="fa fa-flag-o"></i>
         <span class="label label-danger">9</span>
@@ -48,9 +33,8 @@
     <ul class="dropdown-menu">
         <li class="header">You have 9 tasks</li>
         <li>
-            <!-- inner menu: contains the actual data -->
             <ul class="menu">
-                <li><!-- Task item -->
+                <li>
                     <a href="#">
                         <h3>
                             Design some buttons
@@ -63,8 +47,7 @@
                         </div>
                     </a>
                 </li>
-                <!-- end task item -->
-                <li><!-- Task item -->
+                <li>
                     <a href="#">
                         <h3>
                             Create a nice theme
@@ -77,8 +60,7 @@
                         </div>
                     </a>
                 </li>
-                <!-- end task item -->
-                <li><!-- Task item -->
+                <li>
                     <a href="#">
                         <h3>
                             Some task I need to do
@@ -91,8 +73,7 @@
                         </div>
                     </a>
                 </li>
-                <!-- end task item -->
-                <li><!-- Task item -->
+                <li>
                     <a href="#">
                         <h3>
                             Make beautiful transitions
@@ -105,16 +86,15 @@
                         </div>
                     </a>
                 </li>
-                <!-- end task item -->
             </ul>
         </li>
         <li class="footer">
             <a href="#">View all tasks</a>
         </li>
     </ul>
-</li>
+</li> -->
 
-<li class="dropdown messages-menu">
+<!-- <li class="dropdown messages-menu">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
         <i class="fa fa-envelope-o"></i>
         <span class="label label-success">4</span>
@@ -122,9 +102,8 @@
     <ul class="dropdown-menu">
         <li class="header">You have 4 messages</li>
         <li>
-            <!-- inner menu: contains the actual data -->
             <ul class="menu">
-                <li><!-- start message -->
+                <li>
                     <a href="#">
                         <div class="pull-left">
                             <img src="https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/user_male2-512.png" class="img-circle" alt="User Image">
@@ -136,7 +115,6 @@
                         <p>Why not buy a new awesome theme?</p>
                     </a>
                 </li>
-                <!-- end message -->
                 <li>
                     <a href="#">
                         <div class="pull-left">
@@ -189,4 +167,4 @@
         </li>
         <li class="footer"><a href="#">See All Messages</a></li>
     </ul>
-</li>
+</li> -->

@@ -19,6 +19,7 @@ class CreateDaysTable extends Migration
             $table->boolean('is_available')->default(1);
             $table->unsignedInteger('lesson_id');
             $table->text('description');
+            $table->integer('time');
             $table->string('task');
             $table->string('answer');
             $table->timestamps();

@@ -12,29 +12,29 @@ use SleepingOwl\Admin\Contracts\FormInterface;
 use SleepingOwl\Admin\Contracts\Initializable;
 use SleepingOwl\Admin\Section;
 
-class Users extends Section implements Initializable
+class Notifications extends Section implements Initializable
 {
     protected $checkAccess = false;
 
-    protected $title = 'Пользователи';
+    protected $title = 'Уведомления';
 
     protected $alias;
 
-    protected $icon = 'fa fa-user';
+    protected $icon = 'fa fa-bell-o';
 
     public function initialize()
     {
-        $this->addToNavigation($priority = 4, function() {
-            return \App\User::count();
+        $this->addToNavigation($priority = 5, function() {
+            return \App\Notification::count();
         });
     }
 
     public function onDisplay()
     {
         $display = AdminDisplay::table()->setColumns([
-            AdminColumn::link('name')->setLabel('Имя  пользователя')->setWidth('400px'),
-            AdminColumn::text('email')->setLabel('Email  пользователя')->setWidth('400px'),
-            AdminColumn::text('pay_date')->setLabel('Произвел оплату')->setWidth('400px')
+            AdminColumn::link('title')->setLabel('Заголовок')->setWidth('400px'),
+            AdminColumnEditable::select('is_read', 'Прочитан', [0 => 'Нет', 1 => 'Да'])->setWidth('400px'),
+            AdminColumn::text('created_at')->setLabel('Дата')->setWidth('400px')
         ]);
         $display->paginate(15);
         return $display;
@@ -43,8 +43,9 @@ class Users extends Section implements Initializable
     public function onEdit($id)
     {
         $edit = AdminForm::panel()->addBody([
-            AdminFormElement::text('name', 'Имя  пользователя')->required(),
-            AdminFormElement::datetime('pay_date', 'Произвел оплату')->required()
+            AdminFormElement::text('title', 'Заголовок')->required(),
+            AdminFormElement::wysiwyg('description', 'Уведомление')->required(),
+            AdminFormElement::select('is_read', 'Прочитан', [0 => 'Нет', 1 => 'Да'])
         ]);
         return $edit;
     }
