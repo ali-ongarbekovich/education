@@ -28,11 +28,11 @@ class NotificationController extends Controller
 
     }
 
-    public static function newUser(Request $user)
+    public static function newUser($data)
     {
         $now = Carbon::now();
-        $title = 'Добавлен новый пользователь - '.$user->name;
-        $description = 'Добавлен новый пользователь - '.$user->name.'<br>Дата: '.$now.' <br><b>'.$user->name.':'.$user->email.'</b>';
+        $title = 'Добавлен новый пользователь - '.$data['name'];
+        $description = 'Добавлен новый пользователь - '.$data['name'].'<br>Дата: '.$now.' <br><b>'.$data['name'].':'.$data['email'].'</b>';
 
         $notification = new Notification;
         $notification->title = $title;

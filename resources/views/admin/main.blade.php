@@ -1,5 +1,11 @@
 @php
-    $response = App\Http\Controllers\AdminController::adminThings();
+    $response = App\Http\Controllers\AdminController::getStatistics();
+    $devices = App\Http\Controllers\AdminController::getDevices();
+    $platforms = App\Http\Controllers\AdminController::getPlatforms();
+    $browsers = App\Http\Controllers\AdminController::getBrowsers();
+    $visits = App\Http\Controllers\AdminController::getVisits();
+    $mostPopular = json_decode($devices);
+    $range = App\Http\Controllers\AdminController::getTimeInterval();
 @endphp
 
 <a href ='https://adminlte.io/themes/AdminLTE/pages/widgets.html'>Виджеты</a>
@@ -79,36 +85,46 @@
     <!-- /.box-header -->
     <div class="box-body no-padding">
         <div class="row">
-            <div class="col-md-9 col-sm-8">
+            <div class="col-md-3 col-sm-6">
                 <div class="pad">
-
+                    <div id="chart_div1"></div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="pad">
+                    <div id="chart_div2"></div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <div class="pad">
+                    <div id="chart_div3"></div>
                 </div>
             </div>
             <!-- /.col -->
-            <div class="col-md-3 col-sm-4">
+            <div class="col-md-3 col-sm-6">
                 <div class="pad box-pane-right bg-green" style="min-height: 280px">
                     <div class="description-block margin-bottom">
                         <div class="sparkbar pad" data-color="#fff">
                             <canvas width="34" height="30" style="display: inline-block; width: 34px; height: 30px; vertical-align: top;"></canvas>
                         </div>
-                        <h5 class="description-header">8390</h5>
-                        <span class="description-text">Visits</span>
+                        <h5 class="description-header">{{ $visits }}</h5>
+                        <span class="description-text">Посещении</span>
                     </div>
                     <!-- /.description-block -->
                     <div class="description-block margin-bottom">
                         <div class="sparkbar pad" data-color="#fff">
                             <canvas width="34" height="30" style="display: inline-block; width: 34px; height: 30px; vertical-align: top;"></canvas>
                         </div>
-                        <h5 class="description-header">30%</h5>
-                        <span class="description-text">Referrals</span>
+                        <h5 class="description-header">Популярное устройство:</h5>
+                        <span class="description-text">{!! $mostPopular[0]->device !!}</span>
                     </div>
                     <!-- /.description-block -->
                     <div class="description-block">
                         <div class="sparkbar pad" data-color="#fff">
                             <canvas width="34" height="30" style="display: inline-block; width: 34px; height: 30px; vertical-align: top;"></canvas>
                         </div>
-                        <h5 class="description-header">70%</h5>
-                        <span class="description-text">Organic</span>
+                        <h5 class="description-header">Самое посещаемое время</h5>
+                        <span class="description-text">{!! json_decode($range)[0]->hours !!}</span>
                     </div>
                     <!-- /.description-block -->
                 </div>
@@ -119,3 +135,70 @@
     </div>
     <!-- /.box-body -->
 </div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart1);
+
+    function drawChart1() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+            @foreach(json_decode($devices) as $device)
+                ['{!! $device->device !!}', {!! $device->occurrence !!}],
+            @endforeach
+        ]);
+
+        var options = {'title':'Устройства:',
+                       'width':400,
+                       'height':300};
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div1'));
+        chart.draw(data, options);
+    }
+</script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart2);
+
+    function drawChart2() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+            @foreach(json_decode($platforms) as $platform)
+                ['{!! $platform->platform !!}', {!! $platform->occurrence !!}],
+            @endforeach
+        ]);
+
+        var options = {'title':'Платформы:',
+                       'width':400,
+                       'height':300};
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
+        chart.draw(data, options);
+    }
+</script>
+<script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart3);
+
+    function drawChart3() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+            @foreach(json_decode($browsers) as $browser)
+                ['{!! $browser->browser !!}', {!! $browser->occurrence !!}],
+            @endforeach
+        ]);
+
+        var options = {'title':'Браузеры:',
+                       'width':400,
+                       'height':300};
+
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div3'));
+        chart.draw(data, options);
+    }
+</script>
