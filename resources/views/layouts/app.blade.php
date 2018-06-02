@@ -81,10 +81,10 @@
                             </div>
                             <div class="env pull-left"><i class="fa fa-envelope"></i></div>
                             @guest
-                            <ul class="navbar-nav ml-auto">
-                                <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                                <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                            </ul>
+                            <div class="stnt pull-left">
+                                <a class="btn btn-primary" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="btn btn-primary" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </div>
                             @else
                                 <div class="avatar pull-left dropdown">
                                     <a data-toggle="dropdown" href="02_topic.html#"><img src="images/avatar.jpg" alt="" /></a> <b class="caret"></b>

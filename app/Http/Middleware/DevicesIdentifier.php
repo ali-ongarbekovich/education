@@ -27,7 +27,7 @@ class DevicesIdentifier
 
         if ($device != null && $platform != null && $browser != null) {
             $info = GuestInfo::where('device', $device)->where('platform', $platform)->where('browser', $browser)->pluck('user_id');
-            if (in_array(Auth::id(), $info)) {
+            if (Auth::id() != null && in_array(Auth::id(), $info)) {
                 GuestInfo::where('user_id', Auth::id())->where('device', $device)->where('platform', $platform)->where('browser', $browser)->update(['updated_at', Carbon::now()]);
             } else {
                 $userInfo = new GuestInfo;
